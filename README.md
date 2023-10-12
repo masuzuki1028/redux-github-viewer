@@ -1,70 +1,140 @@
-# Getting Started with Create React App
+# Redux Github Viewer
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+React+ReduxでGithub Viewerを実装しましょう。</br>
+実際にGithub REST APIを叩くのは次課題なので、
+この課題は**React Router**と**Redux**の利用にフォーカスしましょう。
 
-## Available Scripts
+demo: https://version1-workspace.github.io/ws-0500-redux-github-viewer/
 
-In the project directory, you can run:
+## 課題で身に着けること
 
-### `yarn start`
+- Reduxでの状態管理
+- Atomicデザインでのコンポーネント設計
+- React Routerでのページ設定とページ遷移
+- Eslint + Prettier
+- モーダルの実装
+- メニューの実装
+- Hooks API
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## 課題の進め方
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### 0. 課題用リポジトリの作成
 
-### `yarn test`
+フォークでなく個人のアカウントにリポジトリ を作成してください。
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### 1. yarn, create-react-appを利用してReactをインストール
 
-### `yarn build`
+1. reactをインストール
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```
+yarn create react-app redux-github-viewer
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### 2. Eslint Prettierのセットアップ
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+##### 1. 静的解析ツールのeslintとpretteirをセットアップする
 
-### `yarn eject`
+- [ESLint](https://eslint.org/docs/latest/use/getting-started)
+- [Prettier](https://prettier.io/docs/en/install.html)
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+##### 2. 使用しているエディタにeslint, prettierのプラグインを導入
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```
+[使用しているエディタ] eslint or prettier プラグイン
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+で検索してインストールしてみてください。詰まった場合は適宜質問ください。
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### 3. 実装に必要な概念を学ぶ
 
-## Learn More
+##### Atomic Designによるコンポーネント設計
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+[Atomic Designとは何か](https://www.codegrid.net/articles/2017-atomic-design-1/)
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+下記ようなディレクトリ設計にすると、うまくいきやすいです。
 
-### Code Splitting
+```
+src - components -+
+                  | - atoms/
+                  | - molecules/
+                  | - organisms/
+                  | - templates/
+    - pages/
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+##### Redux
 
-### Analyzing the Bundle Size
+主にメインコンセプト部分中心に
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+- [Redux.js公式](https://redux.js.org/introduction/getting-started)
+- [Redux入門【ダイジェスト版】10分で理解するReduxの基礎](https://qiita.com/kitagawamac/items/49a1f03445b19cf407b7)]
+- [Redux 入門 〜Reduxの基礎を理解する〜](https://qiita.com/soarflat/items/bd319695d156654bbe86)
 
-### Making a Progressive Web App
+**サンプル**
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+[Redux Todo List](https://jsfiddle.net/version1/u4y0j1qv/latest)
 
-### Advanced Configuration
+##### SPA(Single Page Application)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+- [SPA(Single Page Application)ってなに？](https://digitalidentity.co.jp/blog/creative/about-single-page-application.html)
+- [シングルページアプリケーション（SPA）の導入メリット＆デメリット](https://www.oro.com/ja/technology/001/)
+- [SPA(Single Page Application)の基本](https://qiita.com/takanorip/items/82f0c70ebc81e9246c7a)
+- [React Router](https://reactrouter.com/en/main)
 
-### Deployment
+### 4.デモをみながらGithubViewerを実装
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+- Pull Reqeustページは仮置きしているのででものようにタイトルだけ書いたページを置いておいてください。
 
-### `yarn build` fails to minify
+- 一箇所で長時間はまってしまった場合は別の機能を実装するか質問するようお願いします。
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+##### チェックリスト
+
+- [☓] reactのリポジトリの作成
+- [☓] yarnでのパッケージインストール
+  - [☓] redux, react-reduxのインストール
+  - [☓] redux-devtoolsのインストール
+  - [☓] react-routerのインストール
+  - [☓] styled-componentsのインストール
+  - [☓] eslint+prettierのインストール
+  - [☓] react-modalのインストール
+- [ ] ヘッダーの実装
+  - [ ] ヘッダーロゴの実装
+  - [ ] ヘッダーリンクの実装
+  - [ ] メニューの実装（ライブラリを使わずに実装)
+- [ ] topページの実装
+  - [ ] タブの実装(react-router等ライブラリは使わずに実装）
+- [ ] issueページの実装
+  - [ ] 一覧表示
+  - [ ] issueフィルタ機能の実装
+  - [ ] issue作成(react-modalを使って実装)
+  - [ ] issue更新(react-modalを使って実装)
+  - [ ] issue削除(全て選択のチェックボックスも実装）
+- [ ] プロフィールページの実装（userストアにデータベタ書きしたものを表示だけ）
+- [ ] レスポンシブ対応
+
+### 5. サイトとして公開
+
+1. gh-pagesモジュールを追加
+
+```
+$ yarn add -D gh-pages
+```
+
+2. package.jsonのscriptsに下記コマンドを追加
+
+```
+"predeploy": "react-scripts build"
+"deploy": "gh-pages -d build"
+```
+
+3. packcage.jsonにhomepageの属性を追加
+
+```
+  "homepage": "https://[アカウントID].github.io/[リポジトリ名]" // Github Pagesで公開するURL
+```
+
+4. コマンドを実行
+
+```
+$ yarn run deploy
+```
