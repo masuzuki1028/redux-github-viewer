@@ -10,10 +10,10 @@ const SContainer = styled.div`
   }
 `;
 
-export const Issue = () => {
+export const PullRequestTemplate = () => {
   return (
     <SContainer>
-      <h1>Issue</h1>
+      <h1>PullRequest</h1>
     </SContainer>
   );
 };

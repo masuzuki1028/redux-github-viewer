@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { Button } from "../atoms/Button";
 
 const SContainer = styled.div`
   padding: 16px;
@@ -10,10 +11,11 @@ const SContainer = styled.div`
   }
 `;
 
-export const PullRequest = () => {
+export const IssueTemplate = () => {
   return (
     <SContainer>
-      <h1>PullRequest</h1>
+      <h1>Issue</h1>
+      <Button />
     </SContainer>
   );
 };

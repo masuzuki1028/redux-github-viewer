@@ -32,7 +32,7 @@ const SNavi = styled.ul`
   li {
     margin-right: 16px;
   }
-  li a {
+  li > a {
     color: white;
     text-decoration: none;
     font-size: 1.2rem;
