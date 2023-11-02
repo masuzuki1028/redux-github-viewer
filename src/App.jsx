@@ -17,7 +17,7 @@ const SContent = styled.div`
 
 function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/redux-github-viewer">
       <GlobalStyle />
       <Header />
       <SContent>

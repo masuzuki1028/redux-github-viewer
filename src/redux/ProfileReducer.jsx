@@ -7,14 +7,10 @@ const initialState = {
     "https://1.bp.blogspot.com/-tVeC6En4e_E/X96mhDTzJNI/AAAAAAABdBo/jlD_jvZvMuk3qUcNjA_XORrA4w3lhPkdQCNcBGAsYHQ/s1048/onepiece01_luffy.png",
 };
 
-export const profileSlice = createSlice({
+const profileSlice = createSlice({
   name: "profile",
   initialState,
-  reducers: {
-    profile: (state) => {
-      state;
-    },
-  },
+  reducers: {},
 });
 
 export const profileActions = profileSlice.actions;
