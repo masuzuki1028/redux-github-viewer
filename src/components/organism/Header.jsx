@@ -9,14 +9,13 @@ const SContainer = styled.div`
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  background-color: black;
+  background: rgb(51, 51, 51);
   color: white;
 `;
 
 const SLogo = styled.div`
   a {
     color: white;
-    text-decoration: none;
   }
 `;
 
@@ -29,8 +28,7 @@ const SNavi = styled.ul`
   }
   li > a {
     color: white;
-    text-decoration: none;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
   }
 `;
 
@@ -52,7 +50,9 @@ export const Header = () => {
       </SLogo>
       <SNavi>
         <li>
-          <Link to="/issue">issue</Link>
+          <Link to="/issue">Issue</Link>
+        </li>
+        <li>
           <Link to="/pull-request">Pull Request</Link>
         </li>
       </SNavi>

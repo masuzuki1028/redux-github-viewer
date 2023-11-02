@@ -13,6 +13,7 @@ const STabs = styled.ul`
 
   span {
     cursor: pointer;
+    color: rgb(88, 96, 105);
     padding: 16px;
     display: block;
     width: 100%;
@@ -26,13 +27,13 @@ const STab = styled.li`
   width: 100%;
   border-radius: 6px 6px 0px 0px;
   border-top: ${({ active }) =>
-    !active || active === "true" ? "" : activeStyle};
+    !active || active === "false" ? "" : activeStyle};
   border-right: ${({ active }) =>
-    !active || active === "true" ? "" : activeStyle};
+    !active || active === "false" ? "" : activeStyle};
   border-left: ${({ active }) =>
-    !active || active === "true" ? "" : activeStyle};
+    !active || active === "false" ? "" : activeStyle};
   border-bottom: ${({ active }) =>
-    !active || active === "true" ? "" : activeStyle};
+    !active || active === "false" ? "" : activeStyle};
 `;
 
 export const TabHeader = ({ tabs, selected, onChange }) => {

@@ -20,8 +20,8 @@ export const GlobalStyle = createGlobalStyle`
 
   h1 {
     font-size: 2rem;
-    padding: 0;
-    margin: 0;
+    padding: 0px;
+    margin: 0px;
   }
 
   ul, p {

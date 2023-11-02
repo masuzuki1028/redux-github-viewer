@@ -42,7 +42,7 @@ export const ProfilePage = () => {
   const user = useSelector((state) => state.user);
   return (
     <SContainer>
-      <STitle>profile</STitle>;
+      <STitle>profile</STitle>
       <SContent>
         <SLeft>
           <SGroup>
