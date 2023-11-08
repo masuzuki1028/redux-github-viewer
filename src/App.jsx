@@ -1,6 +1,5 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import React from "react";
-// import "./App.css";
 import { GlobalStyle } from "./styles/GlobalStyle";
 import { TopPage } from "./pages/TopPage";
 import { IssuePage } from "./pages/IssuePage";
