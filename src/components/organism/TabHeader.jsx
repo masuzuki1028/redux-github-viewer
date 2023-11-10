@@ -23,6 +23,7 @@ const STabs = styled.ul`
 const activeStyle = "1px solid #e1e4e8";
 
 const STab = styled.li`
+  font-size: 1.2rem;
   text-align: center;
   width: 100%;
   border-radius: 6px 6px 0px 0px;
@@ -33,7 +34,7 @@ const STab = styled.li`
   border-left: ${({ active }) =>
     !active || active === "false" ? "" : activeStyle};
   border-bottom: ${({ active }) =>
-    !active || active === "false" ? "" : activeStyle};
+    !active || active === "true" ? "" : activeStyle};
 `;
 
 export const TabHeader = ({ tabs, selected, onChange }) => {

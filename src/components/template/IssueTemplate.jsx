@@ -1,8 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import { Button } from "../atoms/Button";
 import { InputField } from "../atoms/InputField";
-
+import { ButtonIcon } from "../atoms/ButtonIcon";
 const SContainer = styled.div`
   padding: 16px;
   margin-top: 16px;
@@ -23,7 +22,9 @@ const SForm = styled.div`
   width: 100%;
 `;
 
-const SAction = styled.div``;
+const SAction = styled.div`
+  display: flex;
+`;
 
 const STable = styled.table`
   border: 1px solid #e1e4e8;
@@ -61,8 +62,8 @@ export const IssueTemplete = () => {
           <InputField />
         </SForm>
         <SAction>
-          <Button type="new" />
-          <Button type="delete" />
+          <ButtonIcon type="new" />
+          <ButtonIcon type="delete" />
         </SAction>
       </SHeader>
       <SContent>
