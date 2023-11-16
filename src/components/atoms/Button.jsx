@@ -15,7 +15,7 @@ const SButton = styled.a`
   font-size: 1rem;
 `;
 
-const SButtonNew = styled(SButton)`
+const SButtonPrimary = styled(SButton)`
   background: rgb(66, 195, 96);
   border-bottom: 2px solid #28a745;
 
@@ -29,7 +29,7 @@ const SButtonNew = styled(SButton)`
   }
 `;
 
-const SButtonDelete = styled(SButton)`
+const SButtonDanger = styled(SButton)`
   background: rgb(215, 58, 73);
   border-bottom: 2px solid #af1c2a;
   &:hover {
@@ -44,22 +44,15 @@ const SButtonDelete = styled(SButton)`
 
 const map = {
   default: SButton,
-  new: SButtonNew,
-  delete: SButtonDelete,
+  new: SButtonPrimary,
+  delete: SButtonDanger,
 };
 
-export const ButtonIcon = ({ type }) => {
-  // eslint-disable-next-line
-  const StyledButton = map[type] || SButton;
-  return (
-    <>
-      <StyledButton>{type}</StyledButton>
-      {/* <SButtonDelete>{type}</SButtonDelete> */}
-    </>
-  );
+export const Button = ({ variant }) => {
+  const StyledButton = map[variant] || SButton;
+  return <StyledButton>{variant}</StyledButton>;
 };
 
-ButtonIcon.propTypes = {
-  type: PropTypes.string,
-  // children: PropTypes.elementType,
+Button.propTypes = {
+  variant: PropTypes.string,
 };

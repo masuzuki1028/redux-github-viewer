@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { InputField } from "../atoms/InputField";
-import { ButtonIcon } from "../atoms/ButtonIcon";
+import { Button } from "../atoms/Button";
 import { useSelector } from "react-redux";
 
 const SContainer = styled.div`
@@ -65,8 +65,8 @@ export const IssueTemplete = () => {
           <InputField />
         </SForm>
         <SAction>
-          <ButtonIcon type="new" />
-          <ButtonIcon type="delete" />
+          <Button variant="new" />
+          <Button variant="delete" />
         </SAction>
       </SHeader>
       <SContent>
