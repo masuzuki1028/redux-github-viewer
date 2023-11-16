@@ -2,6 +2,8 @@ import React from "react";
 import styled from "styled-components";
 import { InputField } from "../atoms/InputField";
 import { ButtonIcon } from "../atoms/ButtonIcon";
+import { useSelector } from "react-redux";
+
 const SContainer = styled.div`
   padding: 16px;
   margin-top: 16px;
@@ -52,6 +54,7 @@ const STable = styled.table`
 `;
 
 export const IssueTemplete = () => {
+  const data = useSelector((state) => state.issue);
   return (
     <SContainer>
       <SHeader>
@@ -80,6 +83,16 @@ export const IssueTemplete = () => {
               <th>更新日付</th>
             </tr>
           </thead>
+          <tbody>
+            {Object.values(data).map((item) => (
+              <tr key={item.id}>
+                <td>{item.title}</td>
+                <td>{item.description}</td>
+                <td>{item.status}</td>
+                <td>{item.createBy}</td>
+              </tr>
+            ))}
+          </tbody>
         </STable>
       </SContent>
     </SContainer>

@@ -15,19 +15,19 @@ const SButton = styled.a`
   font-size: 1rem;
 `;
 
-// const SButtonNew = styled(SButton)`
-//   background: rgb(66, 195, 96);
-//   border-bottom: 2px solid #28a745;
+const SButtonNew = styled(SButton)`
+  background: rgb(66, 195, 96);
+  border-bottom: 2px solid #28a745;
 
-//   &:hover {
-//     background: #28a745;
-//     border-bottom: 2px solid #208437;
-//   }
+  &:hover {
+    background: #28a745;
+    border-bottom: 2px solid #208437;
+  }
 
-//   &:active {
-//     border-bottom: 0;
-//   }
-// `;
+  &:active {
+    border-bottom: 0;
+  }
+`;
 
 const SButtonDelete = styled(SButton)`
   background: rgb(215, 58, 73);
@@ -44,17 +44,17 @@ const SButtonDelete = styled(SButton)`
 
 const map = {
   default: SButton,
-  // new: SButtonNew,
+  new: SButtonNew,
   delete: SButtonDelete,
 };
 
 export const ButtonIcon = ({ type }) => {
   // eslint-disable-next-line
-  const StyledButton = map[type] || map.default;
+  const StyledButton = map[type] || SButton;
   return (
     <>
-      {/* <StyledButton>{type}</StyledButton> */}
-      <SButtonDelete>{type}</SButtonDelete>
+      <StyledButton>{type}</StyledButton>
+      {/* <SButtonDelete>{type}</SButtonDelete> */}
     </>
   );
 };
