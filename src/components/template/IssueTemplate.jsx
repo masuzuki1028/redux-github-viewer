@@ -1,8 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { InputField } from "../atoms/InputField";
 import { Button } from "../atoms/Button";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { IssueItem } from "../organism/IssueItem";
+import { deleteIssue } from "../../store/IssueReducer";
+import { NewIssue } from "../organism/NewIssue";
+import { EditIssue } from "../organism/EditIssue";
 
 const SContainer = styled.div`
   padding: 16px;
@@ -54,7 +58,42 @@ const STable = styled.table`
 `;
 
 export const IssueTemplete = () => {
-  const data = useSelector((state) => state.issue);
+  const data = useSelector((state) => state.issues);
+  const dispatch = useDispatch();
+
+  const [selectedIds, setSelectedIds] = useState([]);
+
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const openModal = () => setModalIsOpen(true);
+  const closeModal = () => setModalIsOpen(false);
+
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+  const [editingIssueId, setEditingIssueId] = useState(null);
+
+  const onCheckboxChange = (id) => {
+    setSelectedIds((prevIds) =>
+      prevIds.includes(id)
+        ? prevIds.filter((prevId) => prevId !== id)
+        : [...prevIds, id]
+    );
+  };
+
+  const onRemove = () => {
+    selectedIds.forEach((id) => {
+      dispatch(deleteIssue(id));
+    });
+  };
+
+  const onRowClick = (id) => {
+    setEditingIssueId(id);
+    setIsEditModalOpen(true);
+  };
+
+  const closeEditModal = () => {
+    setIsEditModalOpen(false);
+    setEditingIssueId(null);
+  };
+
   return (
     <SContainer>
       <SHeader>
@@ -65,8 +104,12 @@ export const IssueTemplete = () => {
           <InputField />
         </SForm>
         <SAction>
-          <Button variant="new" />
-          <Button variant="delete" />
+          <Button variant="new" onClick={openModal} />
+          <NewIssue isOpen={modalIsOpen} onRequestClose={closeModal} />
+          {isEditModalOpen && (
+            <EditIssue id={editingIssueId} onClose={closeEditModal} />
+          )}
+          <Button variant="delete" onClick={onRemove} />
         </SAction>
       </SHeader>
       <SContent>
@@ -84,14 +127,21 @@ export const IssueTemplete = () => {
             </tr>
           </thead>
           <tbody>
-            {Object.values(data).map((item) => (
-              <tr key={item.id}>
-                <td>{item.title}</td>
-                <td>{item.description}</td>
-                <td>{item.status}</td>
-                <td>{item.createBy}</td>
+            {Object.values(data).length > 0 ? (
+              Object.values(data).map((item) => (
+                <IssueItem
+                  key={item.id}
+                  item={item}
+                  onChange={() => onCheckboxChange(item.id)}
+                  checked={selectedIds.includes(item.id)}
+                  onRowClick={() => onRowClick(item.id)}
+                />
+              ))
+            ) : (
+              <tr>
+                <td colSpan="6">データがありません</td>
               </tr>
-            ))}
+            )}
           </tbody>
         </STable>
       </SContent>

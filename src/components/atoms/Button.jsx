@@ -48,11 +48,12 @@ const map = {
   delete: SButtonDanger,
 };
 
-export const Button = ({ variant }) => {
+export const Button = ({ variant, onClick }) => {
   const StyledButton = map[variant] || SButton;
-  return <StyledButton>{variant}</StyledButton>;
+  return <StyledButton onClick={onClick}>{variant}</StyledButton>;
 };
 
 Button.propTypes = {
   variant: PropTypes.string,
+  onClick: PropTypes.func,
 };
