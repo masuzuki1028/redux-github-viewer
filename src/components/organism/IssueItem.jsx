@@ -16,21 +16,24 @@ const Status = {
   1: "close",
 };
 
-export const IssueItem = (props) => {
-  const { item, onChange, checked, onRowClick } = props;
+export const IssueItem = ({ item, onClickCheckBox, checked, onRowClick }) => {
   const status = Status[item.status];
   const now = dayjs().format("MM-DD-YYYY");
 
   return (
-    <SContainer key={item.id} onClick={onRowClick}>
+    <SContainer key={item.id}>
       <td>
-        <input type="checkbox" checked={checked} onChange={onChange}></input>
+        <input
+          type="checkbox"
+          checked={checked}
+          onChange={onClickCheckBox}
+        ></input>
       </td>
-      <td>{item.title}</td>
-      <td>{status}</td>
-      <td></td>
-      <td>{now}</td>
-      <td>{now}</td>
+      <td onClick={onRowClick}>{item.title}</td>
+      <td onClick={onRowClick}>{status}</td>
+      <td onClick={onRowClick}></td>
+      <td onClick={onRowClick}>{now}</td>
+      <td onClick={onRowClick}>{now}</td>
     </SContainer>
   );
 };
@@ -38,6 +41,6 @@ export const IssueItem = (props) => {
 IssueItem.propTypes = {
   item: PropTypes.object,
   checked: PropTypes.bool,
-  onChange: PropTypes.func,
+  onClickCheckBox: PropTypes.func,
   onRowClick: PropTypes.func,
 };

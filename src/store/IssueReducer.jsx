@@ -32,11 +32,7 @@ const IssueSlice = createSlice({
       delete state[action.payload];
     },
     addIssue: (state, action) => {
-      const maxId = Object.keys(state).reduce(
-        (max, currentId) => Math.max(max, parseInt(currentId)),
-        0
-      );
-      const newId = maxId + 1;
+      const newId = Math.max(...Object.keys(state)) + 1;
       state[newId] = {
         id: newId,
         title: action.payload.title,

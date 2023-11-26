@@ -11,13 +11,13 @@ const SButton = styled.a`
   margin: 4px;
   min-width: 100px;
   border-radius: 6px;
-  color: white;
   font-size: 1rem;
 `;
 
 const SButtonPrimary = styled(SButton)`
   background: rgb(66, 195, 96);
   border-bottom: 2px solid #28a745;
+  color: white;
 
   &:hover {
     background: #28a745;
@@ -32,6 +32,7 @@ const SButtonPrimary = styled(SButton)`
 const SButtonDanger = styled(SButton)`
   background: rgb(215, 58, 73);
   border-bottom: 2px solid #af1c2a;
+  color: white;
   &:hover {
     background: #af1c2a;
     border-bottom: 2px solid #671019;
@@ -48,12 +49,13 @@ const map = {
   delete: SButtonDanger,
 };
 
-export const Button = ({ variant, onClick }) => {
+export const Button = ({ variant, onClick, text }) => {
   const StyledButton = map[variant] || SButton;
-  return <StyledButton onClick={onClick}>{variant}</StyledButton>;
+  return <StyledButton onClick={onClick}>{text}</StyledButton>;
 };
 
 Button.propTypes = {
   variant: PropTypes.string,
   onClick: PropTypes.func,
+  text: PropTypes.string,
 };

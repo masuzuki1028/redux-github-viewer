@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { InputField } from "../atoms/InputField";
 import { Button } from "../atoms/Button";
 import { useSelector, useDispatch } from "react-redux";
 import { IssueItem } from "../organism/IssueItem";
 import { deleteIssue } from "../../store/IssueReducer";
 import { NewIssue } from "../organism/NewIssue";
+import { openNewModal, openEditModal } from "../../store/ModalReducer";
 import { EditIssue } from "../organism/EditIssue";
+import { TextField } from "../atoms/TextField";
 
 const SContainer = styled.div`
   padding: 16px;
@@ -20,7 +21,10 @@ const SHeader = styled.div`
   align-items: center;
 `;
 
-const SHeading = styled.div``;
+const SHeading = styled.div`
+  display: flex;
+  align-items: center;
+`;
 
 const SForm = styled.div`
   padding: 8px 16px;
@@ -62,15 +66,18 @@ export const IssueTemplete = () => {
   const dispatch = useDispatch();
 
   const [selectedIds, setSelectedIds] = useState([]);
-
-  const [modalIsOpen, setModalIsOpen] = useState(false);
-  const openModal = () => setModalIsOpen(true);
-  const closeModal = () => setModalIsOpen(false);
-
-  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [editingIssueId, setEditingIssueId] = useState(null);
+  const [searchTitle, setSearchTitle] = useState("");
 
-  const onCheckboxChange = (id) => {
+  const filteredIssues = Object.values(data).filter((item) => {
+    return item.title.toLowerCase().includes(searchTitle.toLowerCase());
+  });
+
+  const openModal = () => {
+    dispatch(openNewModal());
+  };
+
+  const onClickCheckBox = (id) => {
     setSelectedIds((prevIds) =>
       prevIds.includes(id)
         ? prevIds.filter((prevId) => prevId !== id)
@@ -86,12 +93,7 @@ export const IssueTemplete = () => {
 
   const onRowClick = (id) => {
     setEditingIssueId(id);
-    setIsEditModalOpen(true);
-  };
-
-  const closeEditModal = () => {
-    setIsEditModalOpen(false);
-    setEditingIssueId(null);
+    dispatch(openEditModal());
   };
 
   return (
@@ -101,15 +103,17 @@ export const IssueTemplete = () => {
           <h2>Issue</h2>
         </SHeading>
         <SForm>
-          <InputField />
+          <TextField
+            value={searchTitle}
+            onChange={(e) => setSearchTitle(e.target.value)}
+            placeholder="Issue名で検索"
+          />
         </SForm>
         <SAction>
-          <Button variant="new" onClick={openModal} />
-          <NewIssue isOpen={modalIsOpen} onRequestClose={closeModal} />
-          {isEditModalOpen && (
-            <EditIssue id={editingIssueId} onClose={closeEditModal} />
-          )}
-          <Button variant="delete" onClick={onRemove} />
+          <Button variant="new" onClick={openModal} text="new" />
+          <NewIssue />
+          <EditIssue id={editingIssueId} />
+          <Button variant="delete" onClick={onRemove} text="delete" />
         </SAction>
       </SHeader>
       <SContent>
@@ -127,12 +131,22 @@ export const IssueTemplete = () => {
             </tr>
           </thead>
           <tbody>
-            {Object.values(data).length > 0 ? (
+            {/* {Object.values(data).length > 0 ? (
               Object.values(data).map((item) => (
                 <IssueItem
                   key={item.id}
                   item={item}
-                  onChange={() => onCheckboxChange(item.id)}
+                  onClickCheckBox={() => onClickCheckBox(item.id)}
+                  checked={selectedIds.includes(item.id)}
+                  onRowClick={() => onRowClick(item.id)}
+                />
+              )) */}
+            {filteredIssues.length > 0 ? (
+              filteredIssues.map((item) => (
+                <IssueItem
+                  key={item.id}
+                  item={item}
+                  onClickCheckBox={() => onClickCheckBox(item.id)}
                   checked={selectedIds.includes(item.id)}
                   onRowClick={() => onRowClick(item.id)}
                 />
