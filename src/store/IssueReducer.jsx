@@ -31,20 +31,11 @@ const IssueSlice = createSlice({
     deleteIssue: (state, action) => {
       delete state[action.payload];
     },
-    addIssue: (state, action) => {
-      const newId = Math.max(...Object.keys(state)) + 1;
-      state[newId] = {
-        id: newId,
-        title: action.payload.title,
-        description: action.payload.description,
-        status: 0,
-        createBy: "",
-      };
-    },
-    updateIssue: (state, action) => {
-      const { id, title, description, status } = action.payload;
+    upsertIssue: (state, action) => {
+      const id = action.payload.id || Math.max(...Object.keys(state)) + 1;
+      const { title, description, status = 0 } = action.payload
       state[id] = {
-        ...state[id],
+        id,
         title,
         description,
         status,
@@ -53,5 +44,5 @@ const IssueSlice = createSlice({
   },
 });
 
-export const { deleteIssue, addIssue, updateIssue } = IssueSlice.actions;
+export const { deleteIssue, upsertIssue } = IssueSlice.actions;
 export default IssueSlice.reducer;

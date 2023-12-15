@@ -2,11 +2,10 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { Button } from "../atoms/Button";
 import { useSelector, useDispatch } from "react-redux";
-import { IssueItem } from "../organism/IssueItem";
 import { deleteIssue } from "../../store/IssueReducer";
-import { NewIssue } from "../organism/NewIssue";
-import { openNewModal, openEditModal } from "../../store/ModalReducer";
-import { EditIssue } from "../organism/EditIssue";
+import { open } from "../../store/ModalReducer";
+import { IssueItem } from "../organism/IssueItem";
+import { IssueForm } from "../organism/IssueForm";
 import { TextField } from "../atoms/TextField";
 
 const SContainer = styled.div`
@@ -66,7 +65,6 @@ export const IssueTemplete = () => {
   const dispatch = useDispatch();
 
   const [selectedIds, setSelectedIds] = useState([]);
-  const [editingIssueId, setEditingIssueId] = useState(null);
   const [searchTitle, setSearchTitle] = useState("");
 
   const filteredIssues = Object.values(data).filter((item) => {
@@ -74,7 +72,7 @@ export const IssueTemplete = () => {
   });
 
   const openModal = () => {
-    dispatch(openNewModal());
+    dispatch(open(<IssueForm />));
   };
 
   const onClickCheckBox = (id) => {
@@ -92,8 +90,7 @@ export const IssueTemplete = () => {
   };
 
   const onRowClick = (id) => {
-    setEditingIssueId(id);
-    dispatch(openEditModal());
+    dispatch(open(<IssueForm id={id}/>));
   };
 
   return (
@@ -111,8 +108,6 @@ export const IssueTemplete = () => {
         </SForm>
         <SAction>
           <Button variant="new" onClick={openModal} text="new" />
-          <NewIssue />
-          <EditIssue id={editingIssueId} />
           <Button variant="delete" onClick={onRemove} text="delete" />
         </SAction>
       </SHeader>
