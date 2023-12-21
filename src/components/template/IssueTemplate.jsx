@@ -90,7 +90,16 @@ export const IssueTemplete = () => {
   };
 
   const onRowClick = (id) => {
-    dispatch(open(<IssueForm id={id}/>));
+    dispatch(open(<IssueForm id={id} />));
+  };
+
+  const onCheckAll = (e) => {
+    if (e.target.checked) {
+      const allIds = filteredIssues.map((issue) => issue.id);
+      setSelectedIds(allIds);
+    } else {
+      setSelectedIds([]);
+    }
   };
 
   return (
@@ -116,7 +125,7 @@ export const IssueTemplete = () => {
           <thead>
             <tr>
               <th>
-                <input type="checkbox" />
+                <input type="checkbox" onChange={onCheckAll} />
               </th>
               <th></th>
               <th>ステータス</th>
@@ -126,16 +135,6 @@ export const IssueTemplete = () => {
             </tr>
           </thead>
           <tbody>
-            {/* {Object.values(data).length > 0 ? (
-              Object.values(data).map((item) => (
-                <IssueItem
-                  key={item.id}
-                  item={item}
-                  onClickCheckBox={() => onClickCheckBox(item.id)}
-                  checked={selectedIds.includes(item.id)}
-                  onRowClick={() => onRowClick(item.id)}
-                />
-              )) */}
             {filteredIssues.length > 0 ? (
               filteredIssues.map((item) => (
                 <IssueItem
