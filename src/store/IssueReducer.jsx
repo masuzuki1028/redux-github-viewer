@@ -27,8 +27,22 @@ const initialState = {
 const IssueSlice = createSlice({
   name: "Issue",
   initialState,
-  reducers: {},
+  reducers: {
+    deleteIssue: (state, action) => {
+      delete state[action.payload];
+    },
+    upsertIssue: (state, action) => {
+      const id = action.payload.id || Math.max(...Object.keys(state)) + 1;
+      const { title, description, status = 0 } = action.payload
+      state[id] = {
+        id,
+        title,
+        description,
+        status,
+      };
+    },
+  },
 });
 
-export const profileActions = IssueSlice.actions;
+export const { deleteIssue, upsertIssue } = IssueSlice.actions;
 export default IssueSlice.reducer;

@@ -1,8 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
-import { InputField } from "../atoms/InputField";
 import { Button } from "../atoms/Button";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { deleteIssue } from "../../store/IssueReducer";
+import { open } from "../../store/ModalReducer";
+import { IssueItem } from "../organism/IssueItem";
+import { IssueForm } from "../organism/IssueForm";
+import { TextField } from "../atoms/TextField";
 
 const SContainer = styled.div`
   padding: 16px;
@@ -16,7 +20,10 @@ const SHeader = styled.div`
   align-items: center;
 `;
 
-const SHeading = styled.div``;
+const SHeading = styled.div`
+  display: flex;
+  align-items: center;
+`;
 
 const SForm = styled.div`
   padding: 8px 16px;
@@ -54,7 +61,38 @@ const STable = styled.table`
 `;
 
 export const IssueTemplete = () => {
-  const data = useSelector((state) => state.issue);
+  const data = useSelector((state) => state.issues);
+  const dispatch = useDispatch();
+
+  const [selectedIds, setSelectedIds] = useState([]);
+  const [searchTitle, setSearchTitle] = useState("");
+
+  const filteredIssues = Object.values(data).filter((item) => {
+    return item.title.toLowerCase().includes(searchTitle.toLowerCase());
+  });
+
+  const openModal = () => {
+    dispatch(open(<IssueForm />));
+  };
+
+  const onClickCheckBox = (id) => {
+    setSelectedIds((prevIds) =>
+      prevIds.includes(id)
+        ? prevIds.filter((prevId) => prevId !== id)
+        : [...prevIds, id]
+    );
+  };
+
+  const onRemove = () => {
+    selectedIds.forEach((id) => {
+      dispatch(deleteIssue(id));
+    });
+  };
+
+  const onRowClick = (id) => {
+    dispatch(open(<IssueForm id={id}/>));
+  };
+
   return (
     <SContainer>
       <SHeader>
@@ -62,11 +100,15 @@ export const IssueTemplete = () => {
           <h2>Issue</h2>
         </SHeading>
         <SForm>
-          <InputField />
+          <TextField
+            value={searchTitle}
+            onChange={(e) => setSearchTitle(e.target.value)}
+            placeholder="Issue名で検索"
+          />
         </SForm>
         <SAction>
-          <Button variant="new" />
-          <Button variant="delete" />
+          <Button variant="new" onClick={openModal} text="new" />
+          <Button variant="delete" onClick={onRemove} text="delete" />
         </SAction>
       </SHeader>
       <SContent>
@@ -84,14 +126,31 @@ export const IssueTemplete = () => {
             </tr>
           </thead>
           <tbody>
-            {Object.values(data).map((item) => (
-              <tr key={item.id}>
-                <td>{item.title}</td>
-                <td>{item.description}</td>
-                <td>{item.status}</td>
-                <td>{item.createBy}</td>
+            {/* {Object.values(data).length > 0 ? (
+              Object.values(data).map((item) => (
+                <IssueItem
+                  key={item.id}
+                  item={item}
+                  onClickCheckBox={() => onClickCheckBox(item.id)}
+                  checked={selectedIds.includes(item.id)}
+                  onRowClick={() => onRowClick(item.id)}
+                />
+              )) */}
+            {filteredIssues.length > 0 ? (
+              filteredIssues.map((item) => (
+                <IssueItem
+                  key={item.id}
+                  item={item}
+                  onClickCheckBox={() => onClickCheckBox(item.id)}
+                  checked={selectedIds.includes(item.id)}
+                  onRowClick={() => onRowClick(item.id)}
+                />
+              ))
+            ) : (
+              <tr>
+                <td colSpan="6">データがありません</td>
               </tr>
-            ))}
+            )}
           </tbody>
         </STable>
       </SContent>

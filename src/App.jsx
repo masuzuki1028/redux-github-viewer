@@ -1,5 +1,7 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import React from "react";
+import Modal from "react-modal";
+import { useSelector } from "react-redux";
 import { GlobalStyle } from "./styles/GlobalStyle";
 import { TopPage } from "./pages/TopPage";
 import { IssuePage } from "./pages/IssuePage";
@@ -15,6 +17,8 @@ const SContent = styled.div`
 `;
 
 function App() {
+  const modal = useSelector((state) => state.modal);
+
   return (
     <BrowserRouter basename="/redux-github-viewer">
       <GlobalStyle />
@@ -27,6 +31,9 @@ function App() {
           <Route path="/profile" element={<ProfilePage />} />
         </Routes>
       </SContent>
+      <Modal isOpen={modal.show} >
+        {modal.content}
+      </Modal>
     </BrowserRouter>
   );
 }
