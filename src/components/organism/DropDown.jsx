@@ -37,8 +37,8 @@ const SMenuItem = styled.li`
 `;
 
 export const DropDown = () => {
-  const [showDropMenu, SetShowDropMenu] = useState(false);
-  const onDisplaySwitch = () => SetShowDropMenu(!showDropMenu);
+  const [showDropMenu, setShowDropMenu] = useState(false);
+  const onDisplaySwitch = () => setShowDropMenu(!showDropMenu);
 
   return (
     <SContainer>
