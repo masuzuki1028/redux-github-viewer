@@ -27,10 +27,10 @@ const STab = styled.li`
   text-align: center;
   width: 100%;
   border-radius: 6px 6px 0px 0px;
-  border-top: ${({ active }) => (!active ? "" : activeStyle)};
-  border-right: ${({ active }) => (!active ? "" : activeStyle)};
-  border-left: ${({ active }) => (!active ? "" : activeStyle)};
-  border-bottom: ${({ active }) => (!active ? activeStyle : "")};
+  border-top: ${({ active }) => (active ? activeStyle : "")};
+  border-right: ${({ active }) => (active ? activeStyle : "")};
+  border-left: ${({ active }) => (active ? activeStyle : "")};
+  border-bottom: ${({ active }) => (active ? "" : activeStyle)};
 `;
 
 export const TabHeader = ({ tabs, selected, onChange }) => {
