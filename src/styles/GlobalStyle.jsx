@@ -1,7 +1,6 @@
 import { createGlobalStyle } from "styled-components";
 import { colors } from "./constants";
 
-
 export const GlobalStyle = createGlobalStyle`
   html {
     font-family: 'Lato', 'Lucida Grande', 'Lucida Sans Unicode', Tahoma, Sans-Serif;

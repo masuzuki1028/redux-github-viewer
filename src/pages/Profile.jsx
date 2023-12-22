@@ -14,7 +14,7 @@ const SContent = styled.div`
   margin: 32px 0;
   display: flex;
   border-radius: 6px;
-  border: 1px solid ${colors.border}};
+  border: 1px solid ${colors.border};
 `;
 
 const SLeft = styled.div`

@@ -33,7 +33,7 @@ const IssueSlice = createSlice({
     },
     upsertIssue: (state, action) => {
       const id = action.payload.id || Math.max(...Object.keys(state)) + 1;
-      const { title, description, status = 0 } = action.payload
+      const { title, description, status = 0 } = action.payload;
       state[id] = {
         id,
         title,

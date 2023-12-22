@@ -1,4 +1,4 @@
-import React, { useState,useRef } from "react";
+import React, { useState, useRef } from "react";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
@@ -43,22 +43,20 @@ export const DropDown = () => {
   const onDisplaySwitch = () => setShowDropMenu(!showDropMenu);
   const dropDownRef = useRef(null);
 
-  useEffect (() => {
-  const handleClick = (e) => {
-    console.log(e.target);
-    if (dropDownRef.current && !dropDownRef.current.contains(e.target)) {
-      setShowDropMenu(false);
-    }
+  useEffect(() => {
+    const handleClick = (e) => {
+      console.log(e.target);
+      if (dropDownRef.current && !dropDownRef.current.contains(e.target)) {
+        setShowDropMenu(false);
+      }
     };
     if (showDropMenu) {
-      document.addEventListener('mousedown', handleClick);
+      document.addEventListener("mousedown", handleClick);
     }
     return () => {
-      document.removeEventListener('mousedown', handleClick);
+      document.removeEventListener("mousedown", handleClick);
     };
   }, [showDropMenu]);
-  
-
 
   return (
     <SContainer>
