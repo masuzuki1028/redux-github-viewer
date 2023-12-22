@@ -3,10 +3,10 @@ import React from "react";
 import Modal from "react-modal";
 import { useSelector } from "react-redux";
 import { GlobalStyle } from "./styles/GlobalStyle";
-import { TopPage } from "./pages/TopPage";
-import { IssuePage } from "./pages/IssuePage";
-import { PullRequestPage } from "./pages/PullRequestPage";
-import { ProfilePage } from "./pages/ProfilePage";
+import { TopPage } from "./pages/Top";
+import { IssuePage } from "./pages/Issue";
+import { PullRequestPage } from "./pages/PullRequest";
+import { ProfilePage } from "./pages/Profile";
 import { Header } from "./components/organism/Header";
 import styled from "styled-components";
 
