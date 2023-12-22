@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState,useRef } from "react";
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { colors } from "../../styles/constants";
@@ -40,12 +41,30 @@ const SMenuItem = styled.li`
 export const DropDown = () => {
   const [showDropMenu, setShowDropMenu] = useState(false);
   const onDisplaySwitch = () => setShowDropMenu(!showDropMenu);
+  const dropDownRef = useRef(null);
+
+  useEffect (() => {
+  const handleClick = (e) => {
+    console.log(e.target);
+    if (dropDownRef.current && !dropDownRef.current.contains(e.target)) {
+      setShowDropMenu(false);
+    }
+    };
+    if (showDropMenu) {
+      document.addEventListener('mousedown', handleClick);
+    }
+    return () => {
+      document.removeEventListener('mousedown', handleClick);
+    };
+  }, [showDropMenu]);
+  
+
 
   return (
     <SContainer>
       <SMenuIcon className="fa fa-bars" onClick={onDisplaySwitch} />
       {showDropMenu && (
-        <SDropDownMenu>
+        <SDropDownMenu ref={dropDownRef}>
           <ul>
             <SMenuItem>
               <Link to="/" onClick={onDisplaySwitch}>
