@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
+import { colors } from "../../styles/constants";
 
 const SContainer = styled.div``;
 
@@ -20,7 +21,7 @@ const STabs = styled.ul`
   }
 `;
 
-const activeStyle = "1px solid #e1e4e8";
+const activeStyle = `1px solid ${colors.border}`;
 
 const STab = styled.li`
   font-size: 1.2rem;

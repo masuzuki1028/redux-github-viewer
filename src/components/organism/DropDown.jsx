@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import { colors } from "../../styles/constants";
 
 const SContainer = styled.div``;
 
@@ -15,7 +16,7 @@ const SDropDownMenu = styled.div`
   width: 200px;
   border-radius: 2px;
   padding: 8px 0px;
-  background: white;
+  background: ${colors.white};
   color: black;
   box-shadow: 1px 1px 4px 1px #33333326;
 `;
@@ -25,14 +26,14 @@ const SMenuItem = styled.li`
 
   a {
     display: block;
-    color: #333;
+    color: ${colors.black};
     padding: 8px;
     font-size: 1rem;
   }
 
   a:hover {
-    background: #c6dae640;
-    color: white;
+    background: ${colors.hoverRow};
+    color: ${colors.white};
   }
 `;
 

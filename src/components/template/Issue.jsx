@@ -7,6 +7,7 @@ import { open } from "../../store/Modal";
 import { IssueItem } from "../organism/IssueItem";
 import { IssueForm } from "../organism/IssueForm";
 import { TextField } from "../atoms/TextField";
+import { colors } from "../../styles/constants";
 
 const SContainer = styled.div`
   padding: 16px;
@@ -36,7 +37,7 @@ const SAction = styled.div`
 `;
 
 const STable = styled.table`
-  border: 1px solid #e1e4e8;
+  border: 1px solid ${colors.border};
   border-radius: 6px;
   .outline {
     width: 140rem;
@@ -47,7 +48,7 @@ const STable = styled.table`
     padding: 8px;
     text-align: left;
     min-width: 10rem;
-    border-bottom: 1px solid #e1e4e8;
+    border-bottom: 1px solid ${colors.border};
   }
 
   th:first-child,

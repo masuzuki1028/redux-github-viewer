@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
+import { colors } from "../../styles/constants";
 
 const SButton = styled.a`
   cursor: pointer;
@@ -17,7 +18,7 @@ const SButton = styled.a`
 const SButtonPrimary = styled(SButton)`
   background: rgb(66, 195, 96);
   border-bottom: 2px solid #28a745;
-  color: white;
+  color: ${colors.white};
 
   &:hover {
     background: #28a745;
@@ -32,7 +33,7 @@ const SButtonPrimary = styled(SButton)`
 const SButtonDanger = styled(SButton)`
   background: rgb(215, 58, 73);
   border-bottom: 2px solid #af1c2a;
-  color: white;
+  color: ${colors.white};
   &:hover {
     background: #af1c2a;
     border-bottom: 2px solid #671019;

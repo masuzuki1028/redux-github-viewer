@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import { colors } from "../../styles/constants";
 import { DropDown } from "./DropDown";
 
 const SContainer = styled.div`
@@ -10,12 +11,12 @@ const SContainer = styled.div`
   align-items: center;
   width: 100%;
   background: rgb(51, 51, 51);
-  color: white;
+  color: ${colors.white};
 `;
 
 const SLogo = styled.div`
   a {
-    color: white;
+    color: ${colors.white};
   }
 `;
 
@@ -27,7 +28,7 @@ const SNavi = styled.ul`
     margin-right: 16px;
   }
   li > a {
-    color: white;
+    color: ${colors.white};
     font-size: 1.1rem;
   }
 `;

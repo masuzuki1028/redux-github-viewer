@@ -1,13 +1,12 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
+import { colors } from "../styles/constants";
 
 const SContainer = styled.div`
   padding: 16px;
   margin: auto;
 `;
-
-const SBorderStyle = `1px solid #e1e4e8`;
 
 const STitle = styled.h1``;
 
@@ -15,7 +14,7 @@ const SContent = styled.div`
   margin: 32px 0;
   display: flex;
   border-radius: 6px;
-  border: ${SBorderStyle};
+  border: 1px solid ${colors.border}};
 `;
 
 const SLeft = styled.div`
@@ -30,7 +29,7 @@ const SRight = styled.div`
 const SGroup = styled.div``;
 
 const SLabel = styled.label`
-  color: #586069;
+  color: ${colors.weakBlack};
 `;
 
 const SField = styled.p`

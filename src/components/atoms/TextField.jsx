@@ -1,10 +1,11 @@
 import React from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
+import { colors } from "../../styles/constants";
 
 const SContainer = styled.div`
   border-radius: 6px;
-  border: 1px solid #e1e4e8;
+  border: 1px solid ${colors.border};
   width: 100%;
 `;
 

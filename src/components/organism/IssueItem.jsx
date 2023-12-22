@@ -2,12 +2,13 @@ import React from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
 import dayjs from "dayjs";
+import { colors } from "../../styles/constants";
 
 const SContainer = styled.tr`
   cursor: pointer;
 
   &:hover {
-    background: #c6dae640;
+    background: ${colors.hoverRow};
   }
 `;
 
