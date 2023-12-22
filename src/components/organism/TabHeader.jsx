@@ -28,13 +28,13 @@ const STab = styled.li`
   width: 100%;
   border-radius: 6px 6px 0px 0px;
   border-top: ${({ active }) =>
-    !active || active === "false" ? "" : activeStyle};
+    !active || active === false ? "" : activeStyle};
   border-right: ${({ active }) =>
-    !active || active === "false" ? "" : activeStyle};
+    !active || active === false ? "" : activeStyle};
   border-left: ${({ active }) =>
-    !active || active === "false" ? "" : activeStyle};
+    !active || active === false ? "" : activeStyle};
   border-bottom: ${({ active }) =>
-    !active || active === "true" ? "" : activeStyle};
+    !active || active === true ? "" : activeStyle};
 `;
 
 export const TabHeader = ({ tabs, selected, onChange }) => {
