@@ -11,13 +11,6 @@ import { TextArea } from "../atoms/TextArea";
 const SContainer = styled.div`
   max-width: 598px;
   margin: auto;
-  a {
-    width: auto;
-  }
-
-  textarea {
-    min-height: 150px;
-  }
 `;
 
 const STitle = styled.h2`

@@ -6,7 +6,7 @@ import { colors } from "../../styles/constants";
 const SButton = styled.a`
   cursor: pointer;
   display: block;
-  width: 100%;
+  width: auto;
   text-align: center;
   padding: 4px 16px;
   margin: 4px;

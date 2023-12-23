@@ -14,23 +14,25 @@ const SContainer = styled.div`
   color: ${colors.white};
 `;
 
-const SLogo = styled.div`
-  a {
-    color: ${colors.white};
-  }
+const SLogo = styled.div``;
+
+const SLogoLink = styled(Link)`
+  color: ${colors.white};
 `;
 
 const SNavi = styled.ul`
   display: flex;
   width: 100%;
   padding: 0px 32px;
-  li {
-    margin-right: 16px;
-  }
-  li > a {
-    color: ${colors.white};
-    font-size: 1.1rem;
-  }
+`;
+
+const SNavList = styled.li`
+  margin-right: 16px;
+`;
+
+const SNavListLink = styled(Link)`
+  color: ${colors.white};
+  font-size: 1.1rem;
 `;
 
 const SMenu = styled.div`
@@ -45,17 +47,17 @@ export const Header = () => {
   return (
     <SContainer>
       <SLogo>
-        <Link to="/">
+        <SLogoLink to="/">
           <STitle>Github Viewer</STitle>
-        </Link>
+        </SLogoLink>
       </SLogo>
       <SNavi>
-        <li>
-          <Link to="/issue">Issue</Link>
-        </li>
-        <li>
-          <Link to="/pull-request">Pull Request</Link>
-        </li>
+        <SNavList>
+          <SNavListLink to="/issue">Issue</SNavListLink>
+        </SNavList>
+        <SNavList>
+          <SNavListLink to="/pull-request">Pull Request</SNavListLink>
+        </SNavList>
       </SNavi>
       <SMenu>
         <DropDown />

@@ -4,14 +4,16 @@ import styled from "styled-components";
 const SContainer = styled.div`
   padding: 16px;
   margin-top: 128px;
-  h1 {
-    text-align: center;
-  }
 `;
+
+const STitle = styled.h1`
+  text-align: center;
+`;
+
 export const PullRequestPage = () => {
   return (
     <SContainer>
-      <h1>PullRequest</h1>
+      <STitle>PullRequest</STitle>
     </SContainer>
   );
 };

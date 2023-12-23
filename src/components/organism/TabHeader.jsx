@@ -7,18 +7,14 @@ const SContainer = styled.div``;
 
 const STabs = styled.ul`
   display: flex;
+`;
 
-  li {
-    padding: 0;
-  }
-
-  span {
-    cursor: pointer;
-    color: rgb(88, 96, 105);
-    padding: 16px;
-    display: block;
-    width: 100%;
-  }
+const STabIcon = styled.span`
+  cursor: pointer;
+  color: rgb(88, 96, 105);
+  padding: 16px;
+  display: block;
+  width: 100%;
 `;
 
 const activeStyle = `1px solid ${colors.border}`;
@@ -43,7 +39,7 @@ export const TabHeader = ({ tabs, selected, onChange }) => {
           const onClick = () => onChange(tab.key);
           return (
             <STab active={active} key={tab.key}>
-              <span onClick={onClick}>{tab.text}</span>
+              <STabIcon onClick={onClick}>{tab.text}</STabIcon>
             </STab>
           );
         })}

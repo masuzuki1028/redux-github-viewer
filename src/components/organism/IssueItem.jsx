@@ -12,6 +12,16 @@ const SContainer = styled.tr`
   }
 `;
 
+const STableCell = styled.td`
+  padding: 8px;
+  text-align: left;
+  min-width: 10rem;
+  border-bottom: 1px solid ${colors.border};
+
+  &:first-child {
+    min-width: auto;
+  }
+`;
 const Status = {
   0: "open",
   1: "close",
@@ -23,18 +33,18 @@ export const IssueItem = ({ item, onClickCheckBox, checked, onRowClick }) => {
 
   return (
     <SContainer key={item.id}>
-      <td>
+      <STableCell>
         <input
           type="checkbox"
           checked={checked}
           onChange={onClickCheckBox}
         ></input>
-      </td>
-      <td onClick={onRowClick}>{item.title}</td>
-      <td onClick={onRowClick}>{status}</td>
-      <td onClick={onRowClick}></td>
-      <td onClick={onRowClick}>{now}</td>
-      <td onClick={onRowClick}>{now}</td>
+      </STableCell>
+      <STableCell onClick={onRowClick}>{item.title}</STableCell>
+      <STableCell onClick={onRowClick}>{status}</STableCell>
+      <STableCell onClick={onRowClick}></STableCell>
+      <STableCell onClick={onRowClick}>{now}</STableCell>
+      <STableCell onClick={onRowClick}>{now}</STableCell>
     </SContainer>
   );
 };

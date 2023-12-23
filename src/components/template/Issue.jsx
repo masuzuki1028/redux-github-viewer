@@ -42,22 +42,27 @@ const STable = styled.table`
   .outline {
     width: 140rem;
   }
+`;
 
-  th,
-  td {
-    padding: 8px;
-    text-align: left;
-    min-width: 10rem;
-    border-bottom: 1px solid ${colors.border};
-  }
+const STableCell = styled.td`
+  padding: 8px;
+  text-align: left;
+  min-width: 10rem;
+  border-bottom: 1px solid ${colors.border};
 
-  th:first-child,
-  td:first-child {
+  &:first-child {
     min-width: auto;
   }
+`;
 
-  .no-divider {
-    border-bottom: 0;
+const STableHeadCell = styled.th`
+  padding: 8px;
+  text-align: left;
+  min-width: 10rem;
+  border-bottom: 1px solid ${colors.border};
+
+  &:first-child {
+    min-width: auto;
   }
 `;
 
@@ -125,14 +130,14 @@ export const IssueTemplete = () => {
         <STable>
           <thead>
             <tr>
-              <th>
+              <STableHeadCell>
                 <input type="checkbox" onChange={onCheckAll} />
-              </th>
-              <th></th>
-              <th>ステータス</th>
-              <th>作成者</th>
-              <th>作成日付</th>
-              <th>更新日付</th>
+              </STableHeadCell>
+              <STableHeadCell></STableHeadCell>
+              <STableHeadCell>ステータス</STableHeadCell>
+              <STableHeadCell>作成者</STableHeadCell>
+              <STableHeadCell>作成日付</STableHeadCell>
+              <STableHeadCell>更新日付</STableHeadCell>
             </tr>
           </thead>
           <tbody>
@@ -148,7 +153,7 @@ export const IssueTemplete = () => {
               ))
             ) : (
               <tr>
-                <td colSpan="6">データがありません</td>
+                <STableCell colSpan="6">データがありません</STableCell>
               </tr>
             )}
           </tbody>
