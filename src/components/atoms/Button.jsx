@@ -46,8 +46,8 @@ const SButtonDanger = styled(SButton)`
 
 const map = {
   default: SButton,
-  new: SButtonPrimary,
-  delete: SButtonDanger,
+  primary: SButtonPrimary,
+  danger: SButtonDanger,
 };
 
 export const Button = ({ variant, onClick, text }) => {

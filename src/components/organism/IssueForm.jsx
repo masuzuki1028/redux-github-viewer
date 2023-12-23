@@ -56,9 +56,9 @@ const SFooter = styled.div`
 `;
 
 export const IssueForm = (props) => {
-  const { id } = props || {}
+  const { id } = props || {};
   const issue = useSelector((state) => state.issues[id]);
-  const isEdit = !!issue
+  const isEdit = !!issue;
   const [validationError, setValidationError] = useState("");
   const dispatch = useDispatch();
 
@@ -128,7 +128,11 @@ export const IssueForm = (props) => {
         {validationError && <SErrorMessage>{validationError}</SErrorMessage>}
       </SErrorMessageContainer>
       <SFooter>
-        <Button variant="new" onClick={onSubmit} text={ isEdit ? "更新" : "作成" } />
+        <Button
+          variant="primary"
+          onClick={onSubmit}
+          text={isEdit ? "更新" : "作成"}
+        />
         <Button onClick={onClose} text="閉じる" />
       </SFooter>
     </SContainer>

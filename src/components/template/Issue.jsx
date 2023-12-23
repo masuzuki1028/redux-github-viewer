@@ -117,8 +117,8 @@ export const IssueTemplete = () => {
           />
         </SForm>
         <SAction>
-          <Button variant="new" onClick={openModal} text="new" />
-          <Button variant="delete" onClick={onRemove} text="delete" />
+          <Button variant="primary" onClick={openModal} text="new" />
+          <Button variant="danger" onClick={onRemove} text="delete" />
         </SAction>
       </SHeader>
       <SContent>
