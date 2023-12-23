@@ -22,17 +22,22 @@ const SDropDownMenu = styled.div`
   box-shadow: 1px 1px 4px 1px #33333326;
 `;
 
+const SMenuList = styled.ul`
+  padding: 0;
+  margin: 0;
+`;
+
 const SMenuItem = styled.li`
   padding: 0;
+`;
 
-  a {
-    display: block;
-    color: ${colors.black};
-    padding: 8px;
-    font-size: 1rem;
-  }
+const SMenuItemLink = styled(Link)`
+  display: block;
+  color: ${colors.black};
+  padding: 8px;
+  font-size: 1rem;
 
-  a:hover {
+  &:hover {
     background: ${colors.hoverRow};
     color: ${colors.white};
   }
@@ -63,22 +68,28 @@ export const DropDown = () => {
       <SMenuIcon className="fa fa-bars" onClick={onDisplaySwitch} />
       {showDropMenu && (
         <SDropDownMenu ref={dropDownRef}>
-          <ul>
+          <SMenuList>
             <SMenuItem>
-              <Link to="/" onClick={onDisplaySwitch}>
+              <SMenuItemLink to="/" onClick={onDisplaySwitch}>
                 Top
-              </Link>
-              <Link to="/profile" onClick={onDisplaySwitch}>
-                Your Profile
-              </Link>
-              <Link to="/issue" onClick={onDisplaySwitch}>
-                Issue
-              </Link>
-              <Link to="/pull-request" onClick={onDisplaySwitch}>
-                Pull Request
-              </Link>
+              </SMenuItemLink>
             </SMenuItem>
-          </ul>
+            <SMenuItem>
+              <SMenuItemLink to="/profile" onClick={onDisplaySwitch}>
+                Your Profile
+              </SMenuItemLink>
+            </SMenuItem>
+            <SMenuItem>
+              <SMenuItemLink to="/issue" onClick={onDisplaySwitch}>
+                Issue
+              </SMenuItemLink>
+            </SMenuItem>
+            <SMenuItem>
+              <SMenuItemLink to="/pull-request" onClick={onDisplaySwitch}>
+                Pull Request
+              </SMenuItemLink>
+            </SMenuItem>
+          </SMenuList>
         </SDropDownMenu>
       )}
     </SContainer>
