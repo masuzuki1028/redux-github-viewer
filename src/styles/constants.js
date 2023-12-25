@@ -1,7 +1,7 @@
 export const colors = {
-  black: "#333",
+  text: "#333",
   white: "white",
-  weakBlack: "#586069",
+  weakText: "#586069",
   border: "#e1e4e8",
   primary: "#42c360",
   danger: "#d73a49",

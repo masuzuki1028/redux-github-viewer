@@ -18,7 +18,7 @@ const SDropDownMenu = styled.div`
   border-radius: 2px;
   padding: 8px 0px;
   background: ${colors.white};
-  color: black;
+  color: ${colors.text};
   box-shadow: 1px 1px 4px 1px #33333326;
 `;
 
@@ -33,7 +33,7 @@ const SMenuItem = styled.li`
 
 const SMenuItemLink = styled(Link)`
   display: block;
-  color: ${colors.black};
+  color: ${colors.text};
   padding: 8px;
   font-size: 1rem;
 
@@ -50,7 +50,6 @@ export const DropDown = () => {
 
   useEffect(() => {
     const handleClick = (e) => {
-      console.log(e.target);
       if (dropDownRef.current && !dropDownRef.current.contains(e.target)) {
         setShowDropMenu(false);
       }

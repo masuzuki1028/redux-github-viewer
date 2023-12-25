@@ -24,7 +24,7 @@ const initialState = {
   },
 };
 
-const IssueSlice = createSlice({
+const issueSlice = createSlice({
   name: "Issue",
   initialState,
   reducers: {
@@ -44,5 +44,5 @@ const IssueSlice = createSlice({
   },
 });
 
-export const { deleteIssue, upsertIssue } = IssueSlice.actions;
-export default IssueSlice.reducer;
+export const { deleteIssue, upsertIssue } = issueSlice.actions;
+export default issueSlice.reducer;

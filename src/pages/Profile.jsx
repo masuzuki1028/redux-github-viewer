@@ -29,7 +29,7 @@ const SRight = styled.div`
 const SGroup = styled.div``;
 
 const SLabel = styled.label`
-  color: ${colors.weakBlack};
+  color: ${colors.weakText};
 `;
 
 const SField = styled.p`

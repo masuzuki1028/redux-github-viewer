@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { upsertIssue } from "../../store/Issue";
+import { upsertIssue } from "../../store/issue";
 import PropTypes from "prop-types";
-import { hide } from "../../store/Modal";
+import { hide } from "../../store/modal";
 import styled from "styled-components";
 import { Button } from "../atoms/Button";
 import { TextField } from "../atoms/TextField";
