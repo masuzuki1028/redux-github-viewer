@@ -1,15 +1,19 @@
 import React from "react";
 import styled from "styled-components";
-import { IssueTemplete } from "../components/template/IssueTemplate";
 
 const SContainer = styled.div`
   padding: 16px;
+  margin-top: 128px;
 `;
 
-export const IssuePage = () => {
+const STitle = styled.h1`
+  text-align: center;
+`;
+
+export const PullRequestPage = () => {
   return (
     <SContainer>
-      <IssueTemplete />
+      <STitle>PullRequest</STitle>
     </SContainer>
   );
 };

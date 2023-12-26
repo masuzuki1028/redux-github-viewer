@@ -2,11 +2,12 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { Button } from "../atoms/Button";
 import { useSelector, useDispatch } from "react-redux";
-import { deleteIssue } from "../../store/IssueReducer";
-import { open } from "../../store/ModalReducer";
+import { deleteIssue } from "../../store/issue";
+import { open } from "../../store/modal";
 import { IssueItem } from "../organism/IssueItem";
 import { IssueForm } from "../organism/IssueForm";
 import { TextField } from "../atoms/TextField";
+import { colors } from "../../styles/constants";
 
 const SContainer = styled.div`
   padding: 16px;
@@ -36,27 +37,32 @@ const SAction = styled.div`
 `;
 
 const STable = styled.table`
-  border: 1px solid #e1e4e8;
+  border: 1px solid ${colors.border};
   border-radius: 6px;
   .outline {
     width: 140rem;
   }
+`;
 
-  th,
-  td {
-    padding: 8px;
-    text-align: left;
-    min-width: 10rem;
-    border-bottom: 1px solid #e1e4e8;
-  }
+const STableCell = styled.td`
+  padding: 8px;
+  text-align: left;
+  min-width: 10rem;
+  border-bottom: 1px solid ${colors.border};
 
-  th:first-child,
-  td:first-child {
+  &:first-child {
     min-width: auto;
   }
+`;
 
-  .no-divider {
-    border-bottom: 0;
+const STableHeadCell = styled.th`
+  padding: 8px;
+  text-align: left;
+  min-width: 10rem;
+  border-bottom: 1px solid ${colors.border};
+
+  &:first-child {
+    min-width: auto;
   }
 `;
 
@@ -90,7 +96,16 @@ export const IssueTemplete = () => {
   };
 
   const onRowClick = (id) => {
-    dispatch(open(<IssueForm id={id}/>));
+    dispatch(open(<IssueForm id={id} />));
+  };
+
+  const onCheckAll = (e) => {
+    if (e.target.checked) {
+      const allIds = filteredIssues.map((issue) => issue.id);
+      setSelectedIds(allIds);
+    } else {
+      setSelectedIds([]);
+    }
   };
 
   return (
@@ -107,35 +122,25 @@ export const IssueTemplete = () => {
           />
         </SForm>
         <SAction>
-          <Button variant="new" onClick={openModal} text="new" />
-          <Button variant="delete" onClick={onRemove} text="delete" />
+          <Button variant="primary" onClick={openModal} text="new" />
+          <Button variant="danger" onClick={onRemove} text="delete" />
         </SAction>
       </SHeader>
       <SContent>
         <STable>
           <thead>
             <tr>
-              <th>
-                <input type="checkbox" />
-              </th>
-              <th></th>
-              <th>ステータス</th>
-              <th>作成者</th>
-              <th>作成日付</th>
-              <th>更新日付</th>
+              <STableHeadCell>
+                <input type="checkbox" onChange={onCheckAll} />
+              </STableHeadCell>
+              <STableHeadCell></STableHeadCell>
+              <STableHeadCell>ステータス</STableHeadCell>
+              <STableHeadCell>作成者</STableHeadCell>
+              <STableHeadCell>作成日付</STableHeadCell>
+              <STableHeadCell>更新日付</STableHeadCell>
             </tr>
           </thead>
           <tbody>
-            {/* {Object.values(data).length > 0 ? (
-              Object.values(data).map((item) => (
-                <IssueItem
-                  key={item.id}
-                  item={item}
-                  onClickCheckBox={() => onClickCheckBox(item.id)}
-                  checked={selectedIds.includes(item.id)}
-                  onRowClick={() => onRowClick(item.id)}
-                />
-              )) */}
             {filteredIssues.length > 0 ? (
               filteredIssues.map((item) => (
                 <IssueItem
@@ -148,7 +153,7 @@ export const IssueTemplete = () => {
               ))
             ) : (
               <tr>
-                <td colSpan="6">データがありません</td>
+                <STableCell colSpan="6">データがありません</STableCell>
               </tr>
             )}
           </tbody>

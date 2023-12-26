@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { IssueTemplete } from "../components/template/IssueTemplate";
-import { PullRequestTemplate } from "../components/template/PullRequestTemplate";
+import { IssueTemplete } from "../components/template/Issue";
+import { PullRequestTemplate } from "../components/template/PullRequest";
 import { TabHeader } from "../components/organism/TabHeader";
 
 const Tabs = [

@@ -1,7 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
-import profileReducer from "./ProfileReducer";
-import issueReducer from "./IssueReducer";
-import modalReducer from "./ModalReducer";
+import profileReducer from "./profile";
+import issueReducer from "./issue";
+import modalReducer from "./modal";
 
 export const store = configureStore({
   reducer: {

@@ -1,6 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import { colors } from "../../styles/constants";
 
 const SContainer = styled.div``;
 
@@ -15,52 +17,78 @@ const SDropDownMenu = styled.div`
   width: 200px;
   border-radius: 2px;
   padding: 8px 0px;
-  background: white;
-  color: black;
+  background: ${colors.white};
+  color: ${colors.text};
   box-shadow: 1px 1px 4px 1px #33333326;
+`;
+
+const SMenuList = styled.ul`
+  padding: 0;
+  margin: 0;
 `;
 
 const SMenuItem = styled.li`
   padding: 0;
+`;
 
-  a {
-    display: block;
-    color: #333;
-    padding: 8px;
-    font-size: 1rem;
-  }
+const SMenuItemLink = styled(Link)`
+  display: block;
+  color: ${colors.text};
+  padding: 8px;
+  font-size: 1rem;
 
-  a:hover {
-    background: #c6dae640;
-    color: white;
+  &:hover {
+    background: ${colors.hoverRow};
+    color: ${colors.white};
   }
 `;
 
 export const DropDown = () => {
-  const [showDropMenu, SetShowDropMenu] = useState(false);
-  const onDisplaySwitch = () => SetShowDropMenu(!showDropMenu);
+  const [showDropMenu, setShowDropMenu] = useState(false);
+  const onDisplaySwitch = () => setShowDropMenu(!showDropMenu);
+  const dropDownRef = useRef(null);
+
+  useEffect(() => {
+    const handleClick = (e) => {
+      if (dropDownRef.current && !dropDownRef.current.contains(e.target)) {
+        setShowDropMenu(false);
+      }
+    };
+    if (showDropMenu) {
+      document.addEventListener("mousedown", handleClick);
+    }
+    return () => {
+      document.removeEventListener("mousedown", handleClick);
+    };
+  }, [showDropMenu]);
 
   return (
     <SContainer>
       <SMenuIcon className="fa fa-bars" onClick={onDisplaySwitch} />
       {showDropMenu && (
-        <SDropDownMenu>
-          <ul>
+        <SDropDownMenu ref={dropDownRef}>
+          <SMenuList>
             <SMenuItem>
-              <Link to="/" onClick={onDisplaySwitch}>
+              <SMenuItemLink to="/" onClick={onDisplaySwitch}>
                 Top
-              </Link>
-              <Link to="/profile" onClick={onDisplaySwitch}>
-                Your Profile
-              </Link>
-              <Link to="/issue" onClick={onDisplaySwitch}>
-                Issue
-              </Link>
-              <Link to="/pull-request" onClick={onDisplaySwitch}>
-                Pull Request
-              </Link>
+              </SMenuItemLink>
             </SMenuItem>
-          </ul>
+            <SMenuItem>
+              <SMenuItemLink to="/profile" onClick={onDisplaySwitch}>
+                Your Profile
+              </SMenuItemLink>
+            </SMenuItem>
+            <SMenuItem>
+              <SMenuItemLink to="/issue" onClick={onDisplaySwitch}>
+                Issue
+              </SMenuItemLink>
+            </SMenuItem>
+            <SMenuItem>
+              <SMenuItemLink to="/pull-request" onClick={onDisplaySwitch}>
+                Pull Request
+              </SMenuItemLink>
+            </SMenuItem>
+          </SMenuList>
         </SDropDownMenu>
       )}
     </SContainer>

@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { upsertIssue } from "../../store/IssueReducer";
+import { upsertIssue } from "../../store/issue";
 import PropTypes from "prop-types";
-import { hide } from "../../store/ModalReducer";
+import { hide } from "../../store/modal";
 import styled from "styled-components";
 import { Button } from "../atoms/Button";
 import { TextField } from "../atoms/TextField";
@@ -11,13 +11,6 @@ import { TextArea } from "../atoms/TextArea";
 const SContainer = styled.div`
   max-width: 598px;
   margin: auto;
-  a {
-    width: auto;
-  }
-
-  textarea {
-    min-height: 150px;
-  }
 `;
 
 const STitle = styled.h2`
@@ -56,9 +49,9 @@ const SFooter = styled.div`
 `;
 
 export const IssueForm = (props) => {
-  const { id } = props || {}
+  const { id } = props || {};
   const issue = useSelector((state) => state.issues[id]);
-  const isEdit = !!issue
+  const isEdit = !!issue;
   const [validationError, setValidationError] = useState("");
   const dispatch = useDispatch();
 
@@ -128,7 +121,11 @@ export const IssueForm = (props) => {
         {validationError && <SErrorMessage>{validationError}</SErrorMessage>}
       </SErrorMessageContainer>
       <SFooter>
-        <Button variant="new" onClick={onSubmit} text={ isEdit ? "更新" : "作成" } />
+        <Button
+          variant="primary"
+          onClick={onSubmit}
+          text={isEdit ? "更新" : "作成"}
+        />
         <Button onClick={onClose} text="閉じる" />
       </SFooter>
     </SContainer>

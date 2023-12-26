@@ -1,4 +1,5 @@
 import { createGlobalStyle } from "styled-components";
+import { colors } from "./constants";
 
 export const GlobalStyle = createGlobalStyle`
   html {
@@ -35,6 +36,7 @@ export const GlobalStyle = createGlobalStyle`
 
   a {
     text-decoration: none;
-    color: #0366d6;
+    color: ${colors.link};
   }
+
 `;
